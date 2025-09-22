@@ -33,7 +33,7 @@ const AppSidebar: React.FC = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/user/profile", {
+        const res = await axios.get("https://security-dashboard-backend-navy.vercel.app/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(res.data.user); // must contain role
