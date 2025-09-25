@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
@@ -46,34 +46,68 @@ export default function App() {
                 }
               />
 
-              {/* Others Page */}
-              <Route path="/profile" element={<UserProfiles />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/blank" element={<Blank />} />
-              <Route path="/threats" element={<Threats />} />
-              <Route path="/suspicious-ips" element={<Suspicious />} />
-              <Route path="/user_activity_logs" element={<UserActivity />} />
+              {/* Protected Routes */}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <UserProfiles />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/users"
+                element={
+                  <ProtectedRoute>
+                    <Users />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/blank"
+                element={
+                  <ProtectedRoute>
+                    <Blank />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/threats"
+                element={
+                  <ProtectedRoute>
+                    <Threats />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/suspicious-ips"
+                element={
+                  <ProtectedRoute>
+                    <Suspicious />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/user_activity_logs"
+                element={
+                  <ProtectedRoute>
+                    <UserActivity />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/basic-tables"
+                element={
+                  <ProtectedRoute>
+                    <BasicTables />
+                  </ProtectedRoute>
+                }
+              />
 
-              {/* Forms */}
-              {/* <Route path="/form-elements" element={<FormElements />} />
-
-              {/* Tables */}
-              <Route path="/basic-tables" element={<BasicTables />} />
-
-              {/* Ui Elements */}
-              {/* <Route path="/alerts" element={<Alerts />} />
-              <Route path="/avatars" element={<Avatars />} />
-              <Route path="/badge" element={<Badges />} />
-              <Route path="/buttons" element={<Buttons />} />
-              <Route path="/images" element={<Images />} />
-              <Route path="/videos" element={<Videos />} /> */}
-
-              {/* Charts */}
-              {/* <Route path="/line-chart" element={<LineChart />} />
-              <Route path="/bar-chart" element={<BarChart />} /> */}
+            
             </Route>
 
-            {/* Auth Layout */}
+            {/* Auth Layout (public) */}
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -84,6 +118,8 @@ export default function App() {
           </Routes>
         </Router>
       </AuthProvider>
+
+      {/* Toast Notifications */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
